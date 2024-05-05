@@ -1,0 +1,26 @@
+{
+  "name": "node_hn86",
+  "version": "1.0.0",
+  "description": "to learn",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TrapedBoiz/node_hn86.git"
+  },
+  "keywords": [
+    "lear",
+    "node"
+  ],
+  "author": "hainguyen8086",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TrapedBoiz/node_hn86/issues"
+  },
+  "homepage": "https://github.com/TrapedBoiz/node_hn86#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
