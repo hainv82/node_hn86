@@ -13,6 +13,7 @@
             ],
 
             "runtimeExecutable": "${workspaceFolder}/node_modules/nodemon/bin/nodemon.js",
+            // "program": "index.js"
             "program": "${workspaceFolder}/index.js"
         }
     ]
