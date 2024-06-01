@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
         required: true,
         default: 'https://genpartners.genvita.vn/Content/images/avatar.png'
     },
-    isAmin: {
+    isAdmin: {
         type: Boolean,
         required: true,
         default: false
