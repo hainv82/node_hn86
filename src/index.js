@@ -7,7 +7,10 @@ import { connectDb } from './config/db.js'
 dotenv.config()
 
 import userRouter from './routers/users.route.js'
+import categoryRouter from './routers/category.route.js'
+import productRouter from './routers/product.route.js'
 import { errorHandler } from './middleware/error.js'
+import routerOrder from './routers/order.route.js'
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
@@ -40,6 +43,10 @@ app.get('/', (req, res) => {
 // });
 
 app.use('/user', userRouter);
+app.use('/category', categoryRouter);
+app.use('/product', productRouter);
+app.use('/order', routerOrder);
+
 app.use(errorHandler)
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

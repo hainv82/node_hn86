@@ -1,5 +1,5 @@
 import { users } from "../data.js";
-import { UserModel } from "../models/user_model.js";
+import { UserModel } from "../models/schema/user_model.js";
 import expressAsyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs/dist/bcrypt.js";
 import { generateToken } from "../middleware/auth.js";
@@ -7,7 +7,7 @@ import { getSimpRes, getSimpResData } from "../const/wrap_response.js";
 // import  {ResMessage, ResStatus } from "../const/response.enum.js";
 import res_mess from "../const/res_mess.js";
 // const ResStatus = require('../const/ResStatus.js');
-import { ResStatus } from "../const/ResStatus.js";
+import { StatusRes } from "../const/ResStatus.js";
 // import res_enum from "../const/res_enum.js";
 
 
@@ -42,7 +42,7 @@ const loginUser = expressAsyncHandler(async (req, res) => {
             if (bcrypt.compareSync(password, user.password)) {
                 res.status(200).json(getSimpResData(
                     {
-                        status: ResStatus.SUCCESS,
+                        status: StatusRes.SUCCESS,
                         // status: "success",
                         message: "login succes",
                         data: {

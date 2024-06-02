@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import PaymentStatusEnum from "./enum_model/pament_enum";
-import DeliveryStatusEnum from "./enum_model/delivery_enum";
+import PaymentStatusEnum from "../enum_model/pament_enum.js";
+import DeliveryStatusEnum from "../enum_model/delivery_enum.js";
 const OrderSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -83,7 +83,7 @@ const OrderSchema = new mongoose.Schema({
         status: {
             type: String,
             required: true,
-            default:DeliveryStatusEnum.PENDING,
+            default: DeliveryStatusEnum.PENDING,
         },
         deliveryDate: {
             type: Date,

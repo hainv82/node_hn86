@@ -1,6 +1,6 @@
 import Jwt from "jsonwebtoken";
 import { getSimpRes } from "../const/wrap_response.js";
-import { UserModel } from "../models/user_model.js";
+import { UserModel } from "../models/schema/user_model.js";
 // import UserModel from "../models/user_model.js";
 
 
@@ -9,7 +9,7 @@ const generateToken = (id) => {
     return Jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "730d" });
 }
 //protect route
-const protect = async (req, res, next) => {
+const checkToken = async (req, res, next) => {
     let token;
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
         try {
@@ -38,4 +38,4 @@ const protect = async (req, res, next) => {
         // res.status(401).json({ message: "Not authorized, no token" });
     }
 }
-export { generateToken, protect }
+export { generateToken, checkToken as protect }

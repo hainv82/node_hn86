@@ -1,4 +1,4 @@
-export const ResStatus = {
+export const StatusRes = {
     SUCCESS: 'success',
     ERROR: 'error',
     TOKEN_EXPIRED: 'token_expired',
