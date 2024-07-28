@@ -70,4 +70,5 @@ const deleteProduct = expressAsyncHandler(async (req, res) => {
 });
 
 
+
 export { importProduct, insertProduct, getProduct, updateProduct, deleteProduct }

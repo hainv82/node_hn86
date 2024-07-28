@@ -3,15 +3,22 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import { connectDb } from './config/db.js'
+import multer from 'multer'
 
 dotenv.config()
 
 import userRouter from './routers/users.route.js'
 import categoryRouter from './routers/category.route.js'
 import productRouter from './routers/product.route.js'
+import routerUpload from './routers/upload.route.js'
 import { errorHandler } from './middleware/error.js'
 import routerOrder from './routers/order.route.js'
+// import { upload } from './middleware/upload.js'
+
+// const upload = multer({ dest: 'uploads/' });
+
 const app = express()
+
 app.use(cors())
 app.use(bodyParser.json())
 app.use(express.json())
@@ -46,6 +53,19 @@ app.use('/user', userRouter);
 app.use('/category', categoryRouter);
 app.use('/product', productRouter);
 app.use('/order', routerOrder);
+app.use('/upload',
+//  upload.single('file'),
+  routerUpload);
+// app.post('/upload', (req, res) => {
+//   res.send('Upload Success');
+// });
+
+app.use(express.static('./public'));
+
+app.get('/', (req, res) => res.send('/index.html'));
+
+
+
 
 app.use(errorHandler)
 app.listen(port, () => {

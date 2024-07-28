@@ -66,6 +66,18 @@ const updateOrder = expressAsyncHandler(async (req, res) => {
 });
 
 const deleteOrder = expressAsyncHandler(async (req, res) => {
+    try {
+        const { id } = req.query;
+        const order = await OrderModel.findByIdAndDelete(id);
+        if (order) {
+            res.status(200).json(getSimpResData({ status: StatusRes.SUCCESS, message: "Order deleted" }));
+        } else {
+            res.status(404).json(getSimpResData({ status: StatusRes.ERROR, message: "Order not found" }));
+        }
+        // const order
+    } catch (e) {
+        res.status(500).json(getSimpResData({ status: StatusRes.ERROR, message: error.message }));
+    }
 
 });
 
