@@ -73,7 +73,7 @@ const loginUser = expressAsyncHandler(async (req, res) => {
 
 const registerUser = expressAsyncHandler(async (req, res) => {
     try {
-        const { fullName, email, password, phone, image } = req.body;
+        const { fullName, email, password, phone, image, gender } = req.body;
         const userExist = await UserModel.findOne({ email });
         if (userExist) {
             res.status(400).json(getSimpRes({ status: "error", message: "User already exist" }));
@@ -84,6 +84,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
             password: bcrypt.hashSync(password, 10),
             phone,
             image,
+            gender,
         });
         if (user) {
             res.status(201).json(getSimpResData(
@@ -97,6 +98,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
                         phone: user.phone,
                         image: user.image,
                         isAdmin: user.isAdmin,
+                        gender: user.gender,
                         token: generateToken(user._id),
                     },
                 }
@@ -176,5 +178,32 @@ const changePassword = expressAsyncHandler(async (req, res) => {
     }
 });
 
-export { importUsers, loginUser, registerUser, updateProfile, deleteUser, changePassword };
+
+const getUserProfile = expressAsyncHandler(async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.user._id);
+        if (user) {
+            res.status(200).json(getSimpResData(
+                {
+                    status: "success",
+                    data: {
+                        _id: user._id,
+                        fullName: user.fullName,
+                        email: user.email,
+                        phone: user.phone,
+                        image: user.image,
+                        isAdmin: user.isAdmin,
+                        currentRoom: user.currentRoom,
+                    },
+                }
+            ));
+        } else {
+            res.status(404).json(getSimpRes({ status: "error", message: "User not found" }));
+        }
+    } catch (e) {
+        res.status(401).json(getSimpRes({ status: "error", message: e.message }));
+    }
+});
+
+export { importUsers, loginUser, registerUser, updateProfile, deleteUser, changePassword, getUserProfile };
 

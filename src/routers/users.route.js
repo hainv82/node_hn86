@@ -14,5 +14,6 @@ routerUser.post('/register', userController.registerUser);
 routerUser.put('/', protect, userController.updateProfile);
 routerUser.post('/delete', protect, userController.deleteUser);
 routerUser.post('/update_password', protect, userController.changePassword);
+routerUser.get('/profile', protect, userController.getUserProfile);
 export default routerUser;
 

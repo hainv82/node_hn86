@@ -25,10 +25,30 @@ const UserSchema = new mongoose.Schema({
     },
     isAdmin: {
         type: Boolean,
-        required: true,
-        default: false
+        default: false,
     },
+    gender: {
+        type: String,
+        enum: ['male', 'female'],
+        required: true,
+    },
+    currentRoom: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Room',
+        default: null,
+    },
+    isOnline: {
+        type: Boolean,
+        default: false,
+    },
+    isWaiting: {
+        type: Boolean,
+        default: false,
+    }
 },
-    { timestamps: true, });
+    {
+        timestamps: true,
+    });
+
 
 export const UserModel = mongoose.model('UserModel', UserSchema);

@@ -18,7 +18,12 @@ import routerOrder from './routers/order.route.js'
 // const upload = multer({ dest: 'uploads/' });
 
 const app = express()
+// var corsOptions = {
+//   origin: 'http://example.com',
+//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
 
+// app.use(cors(corsOptions))
 app.use(cors())
 app.use(bodyParser.json())
 app.use(express.json())
@@ -54,13 +59,13 @@ app.use('/category', categoryRouter);
 app.use('/product', productRouter);
 app.use('/order', routerOrder);
 app.use('/upload',
-//  upload.single('file'),
+  //  upload.single('file'),
   routerUpload);
 // app.post('/upload', (req, res) => {
 //   res.send('Upload Success');
 // });
 
-app.use(express.static('./public'));
+app.use(express.static('./public'));// set public folder for upload by
 
 app.get('/', (req, res) => res.send('/index.html'));
 
