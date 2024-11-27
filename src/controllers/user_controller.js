@@ -9,6 +9,7 @@ import res_mess from "../const/res_mess.js";
 // const ResStatus = require('../const/ResStatus.js');
 import { StatusRes } from "../const/ResStatus.js";
 // import res_enum from "../const/res_enum.js";
+import { uploadProcessData } from "../firebase.js";
 
 
 // @desc Import all user
@@ -182,6 +183,7 @@ const changePassword = expressAsyncHandler(async (req, res) => {
 const getUserProfile = expressAsyncHandler(async (req, res) => {
     try {
         const user = await UserModel.findById(req.user._id);
+        await uploadProcessData();
         if (user) {
             res.status(200).json(getSimpResData(
                 {

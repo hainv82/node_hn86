@@ -14,10 +14,40 @@ import routerUpload from './routers/upload.route.js'
 import { errorHandler } from './middleware/error.js'
 import routerOrder from './routers/order.route.js'
 // import { upload } from './middleware/upload.js'
+import { initializeFirebase } from './firebase.js'
+
 
 // const upload = multer({ dest: 'uploads/' });
+// Import the functions you need from the SDKs you need
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-const app = express()
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAPjCNVjjek6n1nvjEgNzx0s-fSYvDS9v4",
+//   authDomain: "findu-ea407.firebaseapp.com",
+//   projectId: "findu-ea407",
+//   storageBucket: "findu-ea407.appspot.com",
+//   messagingSenderId: "529860671893",
+//   appId: "1:529860671893:web:e6bc65cd1233891dfd9e9c",
+//   measurementId: "G-S2S98HNKSG"
+// };
+
+
+// Khởi tạo Firebase app
+// const firebaseApp = initializeApp(firebaseConfig);
+
+// Khởi tạo Firestore
+// const db = getFirestore(firebaseApp);
+// const analytics = getAnalytics(app);
+
+// Khởi tạo Express app
+const app = express();
+
+// const app = express()
 // var corsOptions = {
 //   origin: 'http://example.com',
 //   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -29,6 +59,7 @@ app.use(bodyParser.json())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 connectDb()
+initializeFirebase()
 
 const port = process.env.PORT || 3000
 
